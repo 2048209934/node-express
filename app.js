@@ -41,7 +41,6 @@ app.use('/cebest', cases2);
 app.use('/cebest', gengduo);
 
 
-
 app.use('/cebest', img);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

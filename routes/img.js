@@ -28,6 +28,9 @@ router.post('/img',function(req,res){
 				case "image/jpeg":
 				fName=fName+".jpg";
 				break;
+				case "image/jpg":
+				fName=fName+".jpg";
+				break;
 				case "image/png":
 				fName=fName+".png";
 				break;
@@ -36,7 +39,23 @@ router.post('/img',function(req,res){
 			fs.renameSync(file.path,newPath);
 			res.send(newPath);   
 		}
+		pool.query(`insert into user(img) values('http://localhost:8100/public/images/${fName}')`,function(err,rows){
+			if (err) throw err;
+			if(rows){
+				res.send('上传成功')
+			}
+			
+		})
 		
 	})
-	});
+		
+});
+//调取图片
+router.get('/photo',function(req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query('select * from user',function(err,rows){
+		if(err) throw err;
+		res.send(rows);
+	})
+})
 module.exports=router;

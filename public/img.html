@@ -6,15 +6,19 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<script src="javascripts/jquery-1.11.3.js"></script>
 	<title>Document</title>
+	<style>
+		img{width:300px; height: 300px;}
+	</style>
 </head>
 <body>
-	<input type="file" onchange="setFiles(this)">
+	<input type="file" onchange="setFiles(this)" multiple="multiple">
 	<button>注册</button>
 		handleClick
 	<script>
+		var files;
 		var setFiles=function(element){
 		  	console.log(element.files)
-		  	files=element.files[0]
+		  	files=element.files[0]		  	  	
 		}
 		$('button').click(function(){
 			var fd=new FormData();  //表单处理数据的方法
@@ -29,12 +33,23 @@
 				processData:false,
 				success:function(e){
 					console.log(e)
-
-			
 					// 在下面用再次调用ajax   向		
       			}
 			});
+			
 		})
+		$.ajax({
+			type:"get",
+			url:"http://localhost:8100/cebest/photo",
+			async:true,
+			success:function(e){				
+				console.log(e)
+				for(var i=0;i<e.length;i++){
+					console.log(e[i].img)
+				$('body').append('<img src='+e[i].img+'>')
+				}
+  			}
+		});
 	</script>
 </body>
 </html>
