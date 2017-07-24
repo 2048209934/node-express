@@ -18,7 +18,7 @@ var pool=mysql.createPool({
 router.post('/img',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*"); //跨域
 	var form = new formidable.IncomingForm();
-	form.uploadDir='public/upload/temp';  //上传图片存放的路径
+	form.uploadDir='public/images';  //上传图片存放的路径
 	
 	form.parse(req,function(error,fields,files){
 		for(var i in files){
@@ -32,7 +32,7 @@ router.post('/img',function(req,res){
 				fName=fName+".png";
 				break;
 			}
-			var newPath='public/upload/temp'+fName;  //要返回的图片的路径
+			var newPath='public/images/'+fName;  //要返回的图片的路径
 			fs.renameSync(file.path,newPath);
 			res.send(newPath);   
 		}

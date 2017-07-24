@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<script src="javascripts/jquery-1.11.3.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<input type="file" onchange="setFiles(this)">
+	<button>注册</button>
+		handleClick
+	<script>
+		var setFiles=function(element){
+		  	console.log(element.files)
+		  	files=element.files[0]
+		}
+		$('button').click(function(){
+			var fd=new FormData();  //表单处理数据的方法
+			fd.append('uploadedFile',files) //用append方法以键值对的方式保存
+		    console.log(fd)
+			$.ajax({
+				type:"post",
+				url:"http://localhost:8100/cebest/img",
+				async:true,
+				data:fd,
+				contentType:false,
+				processData:false,
+				success:function(e){
+					console.log(e)
+
+			
+					// 在下面用再次调用ajax   向		
+      			}
+			});
+		})
+	</script>
+</body>
+</html>

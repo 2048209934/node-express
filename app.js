@@ -12,6 +12,10 @@ var post = require('./routes/post')
 var contact = require('./routes/contact');
 var cases1 = require('./routes/cases1');
 var cases2 = require('./routes/cases2');
+var gengduo = require('./routes/gengduo');
+
+
+var img = require('./routes/img');
 
 var app = express();
 
@@ -34,7 +38,11 @@ app.use('/post', post);
 app.use('/cebest', contact);
 app.use('/cebest', cases1);
 app.use('/cebest', cases2);
+app.use('/cebest', gengduo);
 
+
+
+app.use('/cebest', img);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
