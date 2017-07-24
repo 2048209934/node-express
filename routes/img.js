@@ -39,7 +39,7 @@ router.post('/img',function(req,res){
 			fs.renameSync(file.path,newPath);
 			res.send(newPath);   
 		}
-		pool.query(`insert into user(img) values('http://localhost:8100/public/images/${fName}')`,function(err,rows){
+		pool.query(`insert into user(img) values('http://localhost:8100/images/${fName}')`,function(err,rows){
 			if (err) throw err;
 			if(rows){
 				res.send('上传成功')
