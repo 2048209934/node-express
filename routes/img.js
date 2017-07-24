@@ -2,8 +2,8 @@ var express=require('express');
 var mysql=require('mysql');
 var router=express.Router();
 
-var fs=require('fs');
-var formidable=require('formidable');
+var fs=require('fs');   //重新命名
+var formidable=require('formidable');   //写入文件
 
 var pool=mysql.createPool({
 	host:'127.0.0.1',
@@ -18,7 +18,8 @@ var pool=mysql.createPool({
 router.post('/img',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*"); //跨域
 	var form = new formidable.IncomingForm();
-	form.uploadDir='public/images';  //上传图片存放的路径
+	form.uploadDir='public/images';
+	  //上传图片存放的路径
 	
 	form.parse(req,function(error,fields,files){
 		for(var i in files){
@@ -28,18 +29,18 @@ router.post('/img',function(req,res){
 				case "image/jpeg":
 				fName=fName+".jpg";
 				break;
-				case "image/jpg":
-				fName=fName+".jpg";
-				break;
 				case "image/png":
 				fName=fName+".png";
 				break;
+				case "image/gif":
+				fName=fName+".gif";
+
 			}
 			var newPath='public/images/'+fName;  //要返回的图片的路径
 			fs.renameSync(file.path,newPath);
-			res.send(newPath);   
+			 // res.send(fName)
 		}
-		pool.query(`insert into user(img) values('http://localhost:8100/public/images/${fName}')`,function(err,rows){
+		pool.query(`insert into cases1(src) values('http://localhost:8100/images/${fName}')`,function(err,rows){
 			if (err) throw err;
 			if(rows){
 				res.send('上传成功')
@@ -48,14 +49,15 @@ router.post('/img',function(req,res){
 		})
 		
 	})
-		
-});
+	});
+
+
 //调取图片
-router.get('/photo',function(req,res){
-	res.header("Access-Control-Allow-Origin", "*");
-	pool.query('select * from user',function(err,rows){
-		if(err) throw err;
-		res.send(rows);
-	})
-})
+//router.get('/photo',function(req,res){
+//	res.header("Access-Control-Allow-Origin", "*");
+//	pool.query('select * from cases1',function(err,rows){
+//		if(err) throw err;
+//		res.send(rows);
+//	})
+//})
 module.exports=router;
