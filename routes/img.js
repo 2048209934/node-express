@@ -40,7 +40,7 @@ router.post('/img',function(req,res){
 			fs.renameSync(file.path,newPath);
 			 // res.send(fName)
 		}
-		pool.query(`insert into cases1(src) values('http://localhost:8100/images/${fName}')`,function(err,rows){
+		pool.query(`insert into careers2(img) values('http://localhost:8100/images/${fName}')`,function(err,rows){
 			if (err) throw err;
 			if(rows){
 				res.send('上传成功')
