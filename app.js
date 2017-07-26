@@ -19,6 +19,8 @@ var chinese2 = require('./routes/chinese2');
 var more = require('./routes/more');
 var careers1 = require('./routes/careers1');
 var careers2 = require('./routes/careers2');
+var careers3 = require('./routes/careers3');
+var backcases = require('./routes/back/backcases');
 
 var img = require('./routes/img');
 
@@ -50,6 +52,8 @@ app.use('/cebest', chinese2);
 app.use('/cebest', more);
 app.use('/cebest', careers1);
 app.use('/cebest', careers2);
+app.use('/cebest', careers3);
+app.use('/cebest', backcases);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
