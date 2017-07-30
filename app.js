@@ -20,13 +20,13 @@ var more = require('./routes/more');
 var careers = require('./routes/careers');
 var careers1 = require('./routes/careers1');
 var careers2 = require('./routes/careers2');
-<<<<<<< HEAD
+
 var careers3 = require('./routes/careers3');
 var backcases = require('./routes/back/backcases');
-=======
+
 var we = require('./routes/we');
 var we_n = require('./routes/we_n');
->>>>>>> origin/master
+
 
 var img = require('./routes/img');
 
@@ -59,13 +59,13 @@ app.use('/cebest', more);
 app.use('/cebest', careers);
 app.use('/cebest', careers1);
 app.use('/cebest', careers2);
-<<<<<<< HEAD
+
 app.use('/cebest', careers3);
 app.use('/cebest', backcases);
-=======
+
 app.use('/cebest', we);
 app.use('/cebest', we_n);
->>>>>>> origin/master
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
