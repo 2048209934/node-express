@@ -19,4 +19,14 @@ router.get("/contact",function (req,res){
 	});
 });
 
+router.post('/upcontact',function(req,res){
+	var con=req.body["con"]
+	var id=req.body["id"]
+	res.header("Access-Control-Allow-Origin", "*");
+pool.query(`update contact set  ${id}="${con}" where uid=1`, function(err, rows, fields) {
+		if (err) throw err;
+	  	res.send("修改成功")
+	});
+})
+
 module.exports=router;
