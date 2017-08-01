@@ -35,6 +35,8 @@ var we_n = require('./routes/we_n');
 
 var img = require('./routes/img');
 
+var know = require('./routes/know');
+
 var app = express();
 
 // view engine setup
@@ -77,6 +79,8 @@ app.use('/cebest', careers3);
 app.use('/cebest', backcases);
 app.use('/cebest', we);
 app.use('/cebest', we_n);
+
+app.use('/cebest', know);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
