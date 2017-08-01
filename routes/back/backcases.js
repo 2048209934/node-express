@@ -14,7 +14,7 @@ var pool=mysql.createPool({
 })
 
 //插入图片
-router.post('/incases1',function(req,res){
+router.post('/incases1a',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*"); //跨域
 	var form = new formidable.IncomingForm();
 	form.uploadDir='public/images';
@@ -43,11 +43,11 @@ router.post('/incases1',function(req,res){
 	})
 	});
 	
-	
 //插入文本
 //案例一
 router.post('/accases1',function(req,res){
 	var con=req.body["text"]
+	console.log(imgs)
 	res.header("Access-Control-Allow-Origin", "*");
 	pool.query(`insert into cases1(src,con) values("${imgs}","${con}")`,function(err,rows){
 			if (err) throw err;
@@ -103,28 +103,29 @@ pool.query(`update cases1 set  con="${con}" where cid=${cid}`, function(err, row
 router.post('/upcases2',function(req,res){
 	var id=req.body["id"]
 	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update cases2 set  img="${imgs}" where id=${id}`, function(err, rows, fields) {
+pool.query(`update cases2 set  img="${imgs}" where cid=${id}`, function(err, rows, fields) {
 		if (err) throw err;
 	  	res.send("修改成功")
 	});
 })
 
-router.post('/upscases2',function(req,res){
+router.post('/casestext1',function(req,res){
 	var id=req.body["id"]
 	var title1=req.body["title1"]
+	console.log(title1)
 	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update cases2 set  title1="${title1}" where id=${id}`, function(err, rows, fields) {
+pool.query(`update cases2 set  title1="${title1}" where cid=${id}`, function(err, rows, fields) {
 		if (err) throw err;
 	  	res.send("修改成功")
 	});
 })
 
 
-router.post('/upscases3',function(req,res){
+router.post('/casestext2',function(req,res){
 	var id=req.body["id"]
 	var title2=req.body["title2"]
 	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update cases2 set  title2="${title2}" where id=${id}`, function(err, rows, fields) {
+pool.query(`update cases2 set  title2="${title2}" where cid=${id}`, function(err, rows, fields) {
 		if (err) throw err;
 	  	res.send("修改成功")
 	});

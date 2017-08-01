@@ -14,7 +14,7 @@ var pool=mysql.createPool({
 });
 
 //插入图片
-router.post('/incases1',function(req,res){
+router.post('/incareers2',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*"); //跨域
 	var form = new formidable.IncomingForm();
 	form.uploadDir='public/images';
@@ -43,6 +43,16 @@ router.post('/incases1',function(req,res){
 	})
 	});
 
+	
+router.post('/upcareers2img',function(req,res){
+	var id=req.body["id"]
+	res.header("Access-Control-Allow-Origin", "*");
+pool.query(`update careers2 set  img="${imgs}" where id=${id}`, function(err, rows, fields) {
+		if (err) throw err;
+	  	res.send("修改成功")
+	});
+})
+
 
 
 router.get("/careers2",function (req,res){
@@ -52,7 +62,6 @@ router.get("/careers2",function (req,res){
 	  	res.send(rows)
 	});
 });
-
 
 router.post('/upcareers2',function(req,res){
 	var id=req.body["id"]
@@ -68,13 +77,5 @@ pool.query(`update careers2 set  title1="${title1}", title2="${title2}", con="${
 	});
 })
 
-router.post('/upcareers2img',function(req,res){
-	var id=req.body["id"]
-	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update careers2 set  img="${imgs}" where id=${id}`, function(err, rows, fields) {
-		if (err) throw err;
-	  	res.send("修改成功")
-	});
-})
 
 module.exports=router;
