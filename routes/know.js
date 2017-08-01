@@ -14,7 +14,7 @@ var pool=mysql.createPool({
 });
 
 //插入图片
-router.post('/incareers2',function(req,res){
+router.post('/inknow',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*"); //跨域
 	var form = new formidable.IncomingForm();
 	form.uploadDir='public/images';
@@ -43,11 +43,10 @@ router.post('/incareers2',function(req,res){
 	})
 	});
 
-	
-router.post('/upcareers2img',function(req,res){
+router.post('/know1',function(req,res){
 	var id=req.body["id"]
 	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update careers2 set  img="${imgs}" where id=${id}`, function(err, rows, fields) {
+pool.query(`update know set  img="${imgs}" where id=${id}`, function(err, rows, fields) {
 		if (err) throw err;
 	  	res.send("修改成功")
 	});
@@ -55,22 +54,12 @@ pool.query(`update careers2 set  img="${imgs}" where id=${id}`, function(err, ro
 
 
 
-router.get("/careers2",function (req,res){
-	res.header("Access-Control-Allow-Origin", "*");
-	pool.query('SELECT * from careers2', function(err, rows, fields) {
-		if (err) throw err;
-	  	res.send(rows)
-	});
-});
-
-router.post('/upcareers2',function(req,res){
+router.post('/know2',function(req,res){
 	var id=req.body["id"]
-	var title1=req.body["title1"]
-	var title2=req.body["title2"]
-	var con=req.body["con"]
+	var tit=req.body["tit"]
 	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update careers2 set  title1="${title1}", title2="${title2}", con="${con}" where id=${id}`, function(err, rows, fields) {
-		pool.query('SELECT * from careers2', function(err, rows, fields) {
+pool.query(`update know set  tit="${tit}" where id=${id}`, function(err, rows, fields) {
+		pool.query('SELECT * from know', function(err, rows, fields) {
 		if (err) throw err;
 	  	res.send(rows)
 	});
@@ -78,4 +67,39 @@ pool.query(`update careers2 set  title1="${title1}", title2="${title2}", con="${
 })
 
 
+router.post('/knowac',function(req,res){
+	var id=req.body["id"] 
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query(`delete from know where id=${id}`, function(err, rows, fields) {
+		pool.query('SELECT * from know', function(err, rows, fields) {
+		if (err) throw err;
+	  	res.send(rows)
+	});
+	});
+})
+
+
+
+router.get("/know",function (req,res){
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query('SELECT * from know', function(err, rows, fields) {
+		if (err) throw err;
+	  	res.send(rows)
+	});
+});
+
+
+//插入
+router.post('/knowins',function(req,res){
+	var tit=req.body["tit"]
+	var con=req.body["con"]
+	res.header("Access-Control-Allow-Origin", "*");
+	pool.query(`insert into know(img,tit,con) values("${imgs}","${tit}","${con}")`,function(err,rows){
+			pool.query('SELECT * from know', function(err, rows, fields) {
+		if (err) throw err;
+	  	res.send(rows)
+	});
+			
+		})
+})
 module.exports=router;
