@@ -2,12 +2,11 @@ var express=require("express");
 var mysql=require("mysql");
 var router=express.Router();
 
-<<<<<<< HEAD
-=======
+
 var fs=require('fs');   //重新命名
 var formidable=require('formidable');   //写入文件
 var imgs
->>>>>>> origin/master
+
 var pool=mysql.createPool({
 	host:"127.0.0.1",
 	user:"root",
@@ -16,8 +15,7 @@ var pool=mysql.createPool({
 	port:"3306"
 });
 
-<<<<<<< HEAD
-=======
+
 //插入图片
 router.post('/inknow',function(req,res){
 	res.header("Access-Control-Allow-Origin", "*"); //跨域
@@ -84,7 +82,7 @@ router.post('/knowac',function(req,res){
 })
 
 
->>>>>>> origin/master
+
 
 router.get("/know",function (req,res){
 	res.header("Access-Control-Allow-Origin", "*");
@@ -94,8 +92,7 @@ router.get("/know",function (req,res){
 	});
 });
 
-<<<<<<< HEAD
-=======
+
 
 //插入
 router.post('/knowins',function(req,res){
@@ -110,5 +107,4 @@ router.post('/knowins',function(req,res){
 			
 		})
 })
->>>>>>> origin/master
 module.exports=router;
