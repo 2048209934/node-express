@@ -73,12 +73,11 @@ app.use('/cebest', we);
 app.use('/cebest', we_n);
 
 app.use('/cebest', know);
-<<<<<<< HEAD
 
 
-=======
+
 app.use('/cebest', logo);
->>>>>>> origin/master
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
