@@ -1,14 +1,7 @@
 var express=require("express");
 var mysql=require("mysql");
 var router=express.Router();
-
-var pool=mysql.createPool({
-	host:"127.0.0.1",
-	user:"root",
-	password:"",
-	database:"cebest",
-	port:"3306"
-});
+var pool=require("./../config.js");
 
 
 router.get("/careers1",function (req,res){
