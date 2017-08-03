@@ -46,6 +46,19 @@ router.post('/inknow',function(req,res){
 	})
 	});
 
+router.post('/knowacf',function(req,res){
+	var con=req.body["con"]
+	var h2=req.body["h2"]
+	res.header("Access-Control-Allow-Origin", "*");
+pool.query(`update know set  h2="${h2}" where con=${con}`, function(err, rows, fields) {
+		pool.query('SELECT * from know', function(err, rows, fields) {
+		if (err) throw err;
+	  	res.send(rows)
+	});
+	});
+})
+
+
 router.post('/know1',function(req,res){
 	var id=req.body["id"]
 	res.header("Access-Control-Allow-Origin", "*");
