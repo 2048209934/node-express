@@ -52,19 +52,7 @@ router.post('/accases1',function(req,res){
 		})
 })
 
-//案例二
-router.post('/accases2',function(req,res){
-	var title1=req.body["title1"]
-	var title2=req.body["title2"]
-	res.header("Access-Control-Allow-Origin", "*");
-	pool.query(`insert into cases2(img,title1,title2) values("${imgs}","${title1}","${title2}")`,function(err,rows){
-			if (err) throw err;
-			if(rows){
-				res.send("上传成功")
-			}
-			
-		})
-})
+
 
 
 
@@ -93,37 +81,7 @@ pool.query(`update cases1 set  con="${con}" where cid=${cid}`, function(err, row
 	});
 })
 
-//案例二
-router.post('/upcases2',function(req,res){
-	var id=req.body["id"]
-	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update cases2 set  img="${imgs}" where cid=${id}`, function(err, rows, fields) {
-		if (err) throw err;
-	  	res.send("修改成功")
-	});
-})
 
-router.post('/casestext1',function(req,res){
-	var id=req.body["id"]
-	var title1=req.body["title1"]
-	console.log(title1)
-	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update cases2 set  title1="${title1}" where cid=${id}`, function(err, rows, fields) {
-		if (err) throw err;
-	  	res.send("修改成功")
-	});
-})
-
-
-router.post('/casestext2',function(req,res){
-	var id=req.body["id"]
-	var title2=req.body["title2"]
-	res.header("Access-Control-Allow-Origin", "*");
-pool.query(`update cases2 set  title2="${title2}" where cid=${id}`, function(err, rows, fields) {
-		if (err) throw err;
-	  	res.send("修改成功")
-	});
-})
 
 
 
@@ -138,14 +96,7 @@ router.get('/alcases1',function(req,res){
 		res.send(rows);
 	})
 })
-//案例二
-router.get('/alcases2',function(req,res){
-	res.header("Access-Control-Allow-Origin", "*");
-	pool.query('select * from cases2',function(err,rows){
-		if(err) throw err;
-		res.send(rows);
-	})
-})
+
 
 
 //删除
@@ -161,15 +112,5 @@ router.post('/dlcases1',function(req,res){
 	});
 })
 
-//案例二
-router.post('/dlcases2',function(req,res){
-	var cid=req.body["cid"]
-	var imagesww=req.body["imagesww"]
-	fs.unlink(imagesww);
-	res.header("Access-Control-Allow-Origin", "*");
-	pool.query(`delete from cases2 where cid=${cid}`, function(err, rows, fields) {
-		if (err) throw err;
-	  	res.send("删除成功")
-	});
-})
+
 module.exports=router;
